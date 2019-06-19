@@ -2,7 +2,7 @@ import UserRow from "./userrow";
 import React from "react";
 import "../App.css";
 
-function MyUsers(onTaskClick) {
+function MyUsers(props) {
   const users = [
     { id: 1, name: "Jon", summary: "36 / Lead Developer" },
     { id: 2, name: "Janine Smith", summary: "32 / Senior Engineer" },
@@ -14,7 +14,11 @@ function MyUsers(onTaskClick) {
         <table className="user-list">
           <tbody>
             {users.map(user => (
-              <UserRow key={user.id} user={user} onTaskClick={onTaskClick} />
+              <UserRow
+                key={user.id}
+                user={user}
+                onTaskClick={props.onTaskClick}
+              />
             ))}
           </tbody>
         </table>

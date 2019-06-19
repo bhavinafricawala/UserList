@@ -2,11 +2,11 @@ import React from "react";
 import "./App.css";
 import MyUsers from "./components/myusers";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <div>
-        <MyUsers />
+        <MyUsers onTaskClick={props.onTaskClick} />
       </div>
     </div>
   );
