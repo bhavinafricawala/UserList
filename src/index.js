@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-function onTaskClick(answer) {
-  alert("You have selected user: " + answer);
+function onTaskClick(name, summary) {
+  alert("You have selected user: " + name + ". User is " + summary);
 }
 ReactDOM.render(
   <App onTaskClick={onTaskClick} />,
