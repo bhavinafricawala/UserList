@@ -6,7 +6,7 @@ class UserForm extends React.Component {
     this.state = {
       id: props.maxId,
       name: "",
-      summary: "",
+      email: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,10 +55,10 @@ class UserForm extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="summary">Summary</label>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
-              name="summary"
+              name="email"
               className="form-control"
               value={this.state.summary}
               onChange={this.onFieldChange}

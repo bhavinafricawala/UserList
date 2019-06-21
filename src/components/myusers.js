@@ -15,8 +15,8 @@ function MyUsers(props) {
               <th />
               <th>ID</th>
               <th>Name</th>
-              <th>Summary</th>
-              <th>Task</th>
+              <th>Email</th>
+              <th>Edit/Delete</th>
             </tr>
           </thead>
           <tbody>

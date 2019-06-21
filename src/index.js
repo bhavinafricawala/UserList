@@ -7,10 +7,21 @@ import App from "./App";
 import AddUserForm from "./components/AddUserForm";
 import * as serviceWorker from "./serviceWorker";
 
-const users = [
+let users = [
   { id: 1, name: "Jon", summary: "36 / Lead Developer" },
   { id: 2, name: "Janine Smith", summary: "32 / Senior Engineer" },
 ];
+
+function getUsers() {
+  var xHttp = new XMLHttpRequest();
+  xHttp.open("GET", "https://jsonplaceholder.typicode.com/users", false);
+  xHttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+
+  xHttp.onreadystatechange = function() {
+    users = JSON.parse(xHttp.responseText);
+  };
+  xHttp.send();
+}
 
 function getMaxY() {
   return users.reduce((max, p) => (p.id > max ? p.id : max), users[0].id) + 1;
@@ -30,6 +41,7 @@ const UserWraper = withRouter(({ history }) => (
 ));
 
 function render() {
+  getUsers();
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>

@@ -11,7 +11,7 @@ function UserRow(props) {
       </td>
       <td className="name">{props.user.id}</td>
       <td className="name">{props.user.name}</td>
-      <td className="summary">{props.user.summary}</td>
+      <td className="summary">{props.user.email}</td>
       <td className="actions">
         <TaskButton user={props.user} />
       </td>
