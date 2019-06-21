@@ -1,16 +1,38 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Route, withRouter } from "react-browser-router";
 import "./index.css";
 import App from "./App";
+import AddUserForm from "./components/AddUserForm";
 import * as serviceWorker from "./serviceWorker";
 
-function onTaskClick(name, summary) {
-  alert("You have selected user: " + name + ". User is " + summary);
+const users = [
+  { id: 1, name: "Jon", summary: "36 / Lead Developer" },
+  { id: 2, name: "Janine Smith", summary: "32 / Senior Engineer" },
+];
+
+const UserWraper = withRouter(({ history }) => (
+  <AddUserForm
+    onUserAdd={user => {
+      users.push(user);
+      history.push("/");
+    }}
+  />
+));
+
+function render() {
+  ReactDOM.render(
+    <BrowserRouter>
+      <React.Fragment>
+        <Route exact path="/" render={() => <App users={users} />} />
+        <Route exact path="/add" component={UserWraper} />
+      </React.Fragment>
+    </BrowserRouter>,
+    document.getElementById("root")
+  );
 }
-ReactDOM.render(
-  <App onTaskClick={onTaskClick} />,
-  document.getElementById("root")
-);
+
+render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

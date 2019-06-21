@@ -12,7 +12,7 @@ function UserRow(props) {
       <td className="name">{props.user.name}</td>
       <td className="summary">{props.user.summary}</td>
       <td className="actions">
-        <TaskButton user={props.user} onClick={props.onTaskClick} />
+        <TaskButton user={props.user} />
       </td>
     </tr>
   );
