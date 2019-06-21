@@ -24,16 +24,3 @@
 .actions {
   max-width: 100px;
 }
-
-.AddUserForm {
-  width: 80%;
-  margin: 50px 10%;
-}
-
-.UserFormInput {
-  margin-bottom: 20px;
-}
-
-.UserFormInput > label {
-  display: block;
-}

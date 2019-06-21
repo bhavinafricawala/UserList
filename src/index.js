@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, withRouter } from "react-browser-router";
 import "./index.css";
+import "./bootstrap.min.css";
 import App from "./App";
 import AddUserForm from "./components/AddUserForm";
 import * as serviceWorker from "./serviceWorker";
@@ -11,12 +12,20 @@ const users = [
   { id: 2, name: "Janine Smith", summary: "32 / Senior Engineer" },
 ];
 
+function getMaxY() {
+  return users.reduce((max, p) => (p.id > max ? p.id : max), users[0].id) + 1;
+}
+
 const UserWraper = withRouter(({ history }) => (
   <AddUserForm
     onUserAdd={user => {
       users.push(user);
       history.push("/");
     }}
+    onCancel={() => {
+      history.push("/");
+    }}
+    maxId={getMaxY()}
   />
 ));
 

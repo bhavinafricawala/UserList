@@ -4,10 +4,21 @@ import "../App.css";
 
 function MyUsers(props) {
   return (
-    <div>
-      <h1>My Users</h1>
-      <div>
-        <table className="user-list">
+    <div className="card">
+      <div className="card-header">
+        <h1>My Users</h1>
+      </div>
+      <div className="card-body">
+        <table className="table">
+          <thead>
+            <tr>
+              <th />
+              <th>ID</th>
+              <th>Name</th>
+              <th>Summary</th>
+              <th>Task</th>
+            </tr>
+          </thead>
           <tbody>
             {props.users.map(user => (
               <UserRow key={user.id} user={user} />

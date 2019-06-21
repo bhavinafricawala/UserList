@@ -4,18 +4,23 @@ class UserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
+      id: props.maxId,
       name: "",
       summary: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
+    this.onAddCancel = this.onAddCancel.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.onUserAdd(this.state);
+  }
+
+  onAddCancel(event) {
+    this.props.onCancel();
   }
 
   onFieldChange(event) {
@@ -27,34 +32,48 @@ class UserForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="UserFormInput">
-          <label htmlFor="id">ID</label>
-          <input
-            type="text"
-            name="id"
-            value={this.state.id}
-            onChange={this.onFieldChange}
-          />
+        <div className="card-body">
+          <div className="form-group">
+            <label htmlFor="id">ID</label>
+            <input
+              type="text"
+              name="id"
+              className="form-control"
+              disabled
+              value={this.state.id}
+              onChange={this.onFieldChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.onFieldChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="summary">Summary</label>
+            <input
+              type="text"
+              name="summary"
+              className="form-control"
+              value={this.state.summary}
+              onChange={this.onFieldChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>{" "}
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={this.onAddCancel}>
+            Cancel
+          </button>
         </div>
-        <div className="UserFormInput">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.onFieldChange}
-          />
-        </div>
-        <div className="UserFormInput">
-          <label htmlFor="summary">Summary</label>
-          <input
-            type="text"
-            name="summary"
-            value={this.state.summary}
-            onChange={this.onFieldChange}
-          />
-        </div>
-        <button type="submit">Submit</button>
       </form>
     );
   }

@@ -9,6 +9,7 @@ function UserRow(props) {
       <td className="avatar">
         <Avatar />
       </td>
+      <td className="name">{props.user.id}</td>
       <td className="name">{props.user.name}</td>
       <td className="summary">{props.user.summary}</td>
       <td className="actions">

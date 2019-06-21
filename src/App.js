@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 function App(props) {
   return (
     <div className="App">
-      <div>
+      <div className="container">
         <MyUsers users={props.users} />
         <p>
-          <Link to="/add">Add an Author</Link>
+          <br />
+          <Link to="/add" className="btn btn-primary">
+            Add an Author
+          </Link>
         </p>
       </div>
     </div>
