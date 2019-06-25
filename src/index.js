@@ -98,8 +98,8 @@ function render() {
         </React.Fragment>
         <br />
         <footer class="footer">
-          <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
+          <div class="container text-right">
+            <span class="text-muted ">Bhavin Africawala © 2019</span>
           </div>
         </footer>
       </React.Fragment>{" "}
