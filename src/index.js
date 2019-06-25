@@ -1,12 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link, withRouter } from "react-browser-router";
-import {
-  getUsers,
-  getMaxId,
-  FindAndReplace,
-  FindAndRemove,
-} from "./core/coreutil";
+
 import "./index.css";
 import "./bootstrap.min.css";
 import "./stickyfooter.css";
@@ -14,6 +9,12 @@ import App from "./App";
 import AddUserForm from "./components/AddUserForm";
 import EditUserForm from "./components/EditUserForm";
 import DeleteUserForm from "./components/DeleteUserForm";
+import {
+  getUsers,
+  getMaxId,
+  FindAndReplace,
+  FindAndRemove,
+} from "./core/coreutil";
 import * as serviceWorker from "./serviceWorker";
 
 let users = [
@@ -21,45 +22,45 @@ let users = [
   { id: 2, name: "Janine Smith", summary: "32 / Senior Engineer" },
 ];
 
-const UserWraper = withRouter(({ history }) => (
+const UserWraper = withRouter(props => (
   <AddUserForm
     onUserAdd={user => {
       users.push(user);
-      history.push("/");
+      props.history.push("/");
     }}
     onCancel={() => {
-      history.push("/");
+      props.history.push("/");
     }}
     maxId={getMaxId(users)}
   />
 ));
 
-const EditUserWraper = withRouter(({ history, match }) => (
+const EditUserWraper = withRouter(props => (
   <EditUserForm
     onUserEdit={user => {
       FindAndReplace(users, "id", user);
-      history.push("/");
+      props.history.push("/");
     }}
     onCancel={() => {
-      history.push("/");
+      props.history.push("/");
     }}
-    id={match.params.id}
-    name={match.params.name}
-    email={match.params.email}
+    id={props.match.params.id}
+    name={props.match.params.name}
+    email={props.match.params.email}
   />
 ));
 
-const DeleteUserWraper = withRouter(({ history, match }) => (
+const DeleteUserWraper = withRouter(props => (
   <DeleteUserForm
     onUserDelete={user => {
       FindAndRemove(users, "id", user);
-      history.push("/");
+      props.history.push("/");
     }}
     onCancel={() => {
-      history.push("/");
+      props.history.push("/");
     }}
-    id={match.params.id}
-    name={match.params.name}
+    id={props.match.params.id}
+    name={props.match.params.name}
   />
 ));
 
