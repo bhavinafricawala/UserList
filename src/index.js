@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, withRouter } from "react-browser-router";
+import { BrowserRouter, Route, Link, withRouter } from "react-browser-router";
 import {
   getUsers,
   getMaxId,
@@ -9,6 +9,7 @@ import {
 } from "./core/coreutil";
 import "./index.css";
 import "./bootstrap.min.css";
+import "./stickyfooter.css";
 import App from "./App";
 import AddUserForm from "./components/AddUserForm";
 import EditUserForm from "./components/EditUserForm";
@@ -67,11 +68,40 @@ function render() {
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>
-        <Route exact path="/" render={() => <App users={users} />} />
-        <Route exact path="/add" component={UserWraper} />
-        <Route path="/edit/:id/:name/:email" component={EditUserWraper} />
-        <Route path="/delete/:id/:name" component={DeleteUserWraper} />
-      </React.Fragment>
+        <div class="pos-f-t">
+          <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+              <h5 class="text-white h4">Collapsed content</h5>
+              <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+          </div>
+          <nav class="navbar navbar-dark bg-dark">
+            <Link
+              to="/"
+              class="navbar-toggler"
+              data-toggle="collapse"
+              data-target="#navbarToggleExternalContent"
+              aria-controls="navbarToggleExternalContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon" />
+            </Link>
+          </nav>
+        </div>
+
+        <React.Fragment>
+          <Route exact path="/" render={() => <App users={users} />} />
+          <Route exact path="/add" component={UserWraper} />
+          <Route path="/edit/:id/:name/:email" component={EditUserWraper} />
+          <Route path="/delete/:id/:name" component={DeleteUserWraper} />
+        </React.Fragment>
+        <br />
+        <footer class="footer">
+          <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+          </div>
+        </footer>
+      </React.Fragment>{" "}
     </BrowserRouter>,
     document.getElementById("root")
   );
