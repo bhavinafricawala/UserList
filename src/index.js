@@ -97,9 +97,9 @@ function render() {
           <Route path="/delete/:id/:name" component={DeleteUserWraper} />
         </React.Fragment>
         <br />
-        <footer class="footer">
-          <div class="container text-right">
-            <span class="text-muted ">Bhavin Africawala © 2019</span>
+        <footer className="footer">
+          <div className="container text-right">
+            <span className="text-muted">Bhavin Africawala © 2019</span>
           </div>
         </footer>
       </React.Fragment>{" "}

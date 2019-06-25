@@ -34,3 +34,7 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.text-muted {
+  color: #9fd6f8 !important;
+}
