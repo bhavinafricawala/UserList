@@ -18,7 +18,7 @@ export function getMaxId(users) {
 export function FindAndReplace(array, property, newuser) {
   console.log(newuser);
   array.forEach(function(result, index) {
-    if (result[property] === parseInt(newuser.id)) {
+    if (parseInt(result[property]) === parseInt(newuser.id)) {
       array.splice(index, 1, newuser);
     }
   });
@@ -26,7 +26,7 @@ export function FindAndReplace(array, property, newuser) {
 
 export function FindAndRemove(array, property, deleteuser) {
   array.forEach(function(result, index) {
-    if (result[property] === parseInt(deleteuser.id)) {
+    if (parseInt(result[property]) === parseInt(deleteuser.id)) {
       array.splice(index, 1);
     }
   });
