@@ -1,54 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
-class DeleteUserForm extends React.Component {
-  constructor(props) {
-    super(props);
+function DeleteUserForm(props) {
+  const [id] = useState(props.id);
+  const [name] = useState(props.name);
 
-    this.state = {
-      id: props.id,
-      name: props.name,
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onAddCancel = this.onAddCancel.bind(this);
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = event => {
     event.preventDefault();
-    this.props.onUserDelete(this.state);
-  }
+    const user = { id: id, name: name };
+    props.onUserDelete(user);
+  };
 
-  onAddCancel(event) {
-    this.props.onCancel();
-  }
-  render() {
-    return (
-      <div className="container">
-        <div className="card">
-          <div className="card-header">
-            <h1>Edit User</h1>
-          </div>
-          <br />
-          <p>
-            <form onSubmit={this.handleSubmit}>
-              <div className="alert alert-danger">
-                Are you sure you want to delete {this.state.name}? {"   "}
-              </div>
-              <button type="submit" className="btn btn-danger">
-                Submit
-              </button>{" "}
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={this.onAddCancel}>
-                Cancel
-              </button>
-            </form>
-          </p>
+  const onDeleteCancel = () => {
+    props.onCancel();
+  };
+
+  return (
+    <div className="container">
+      <div className="card">
+        <div className="card-header">
+          <h1>Edit User</h1>
         </div>
+        <br />
+        <p>
+          <form onSubmit={handleSubmit}>
+            <div className="alert alert-danger">
+              Are you sure you want to delete <b>{name}</b>? {"   "}
+            </div>
+            <button type="submit" className="btn btn-danger">
+              Submit
+            </button>{" "}
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={onDeleteCancel}>
+              Cancel
+            </button>
+          </form>
+        </p>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default DeleteUserForm;

@@ -4,24 +4,6 @@ function UserForm(props) {
   const [id, setId] = useState(props.maxId);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  //  this.handleSubmit = this.handleSubmit.bind(this);
-  //this.onFieldChange = this.onFieldChange.bind(this);
-  //this.onAddCancel = this.onAddCancel.bind(this);
-
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   this.props.onUserAdd(this.state);
-  // }
-
-  // onAddCancel(event) {
-  //   this.props.onCancel();
-  // }
-
-  // onFieldChange(event) {
-  //   this.setState({
-  //     [event.target.name]: event.target.value,
-  //   });
-  // }
 
   const handleSubmit = event => {
     event.preventDefault();
