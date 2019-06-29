@@ -18,8 +18,8 @@ import {
 import * as serviceWorker from "./serviceWorker";
 
 let users = [
-  { id: 1, name: "Jon", summary: "36 / Lead Developer" },
-  { id: 2, name: "Janine Smith", summary: "32 / Senior Engineer" },
+  { id: 1, name: "Jon", email: "36 / Lead Developer" },
+  { id: 2, name: "Janine Smith", email: "32 / Senior Engineer" },
 ];
 
 const UserWraper = withRouter(props => (

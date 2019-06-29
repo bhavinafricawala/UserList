@@ -1,82 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 
-class UserForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: props.maxId,
-      name: "",
-      email: "",
-    };
+function UserForm(props) {
+  const [id, setId] = useState(props.maxId);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  //  this.handleSubmit = this.handleSubmit.bind(this);
+  //this.onFieldChange = this.onFieldChange.bind(this);
+  //this.onAddCancel = this.onAddCancel.bind(this);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onFieldChange = this.onFieldChange.bind(this);
-    this.onAddCancel = this.onAddCancel.bind(this);
-  }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   this.props.onUserAdd(this.state);
+  // }
 
-  handleSubmit(event) {
+  // onAddCancel(event) {
+  //   this.props.onCancel();
+  // }
+
+  // onFieldChange(event) {
+  //   this.setState({
+  //     [event.target.name]: event.target.value,
+  //   });
+  // }
+
+  const handleSubmit = event => {
     event.preventDefault();
-    this.props.onUserAdd(this.state);
-  }
+    const user = { id: id, name: name, email: email };
+    props.onUserAdd(user);
+  };
 
-  onAddCancel(event) {
-    this.props.onCancel();
-  }
+  const onAddCancel = () => {
+    props.onChange();
+  };
 
-  onFieldChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="card-body">
-          <div className="form-group">
-            <label htmlFor="id">ID</label>
-            <input
-              type="text"
-              name="id"
-              className="form-control"
-              disabled
-              value={this.state.id}
-              onChange={this.onFieldChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              value={this.state.name}
-              onChange={this.onFieldChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              name="email"
-              className="form-control"
-              value={this.state.summary}
-              onChange={this.onFieldChange}
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>{" "}
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={this.onAddCancel}>
-            Cancel
-          </button>
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="card-body">
+        <div className="form-group">
+          <label htmlFor="id">ID</label>
+          <input
+            type="text"
+            name="id"
+            className="form-control"
+            disabled
+            value={id}
+            onChange={e => setId(e.target.value)}
+          />
         </div>
-      </form>
-    );
-  }
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            className="form-control"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            className="form-control"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>{" "}
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={onAddCancel}>
+          Cancel
+        </button>
+      </div>
+    </form>
+  );
 }
 
 export default UserForm;
