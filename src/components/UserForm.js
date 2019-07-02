@@ -12,7 +12,7 @@ function UserForm(props) {
   };
 
   const onAddCancel = () => {
-    props.onChange();
+    props.onCancel();
   };
 
   return (
