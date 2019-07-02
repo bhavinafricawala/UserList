@@ -9,7 +9,7 @@ function MyUsers(props) {
         <h1>My Users</h1>
       </div>
       <div className="card-body">
-        <table className="table table-responsive">
+        <table className="table table-responsive table-striped">
           <thead>
             <tr>
               <th />
