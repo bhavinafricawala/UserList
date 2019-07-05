@@ -1,8 +1,6 @@
 export function getUsers() {
   var users;
   var xHttp = new XMLHttpRequest();
-  //test auto
-  //xHttp.open("GET", "http://localhost:65145/api/values", false);
   xHttp.open("GET", "https://ba-todolistapi.herokuapp.com/api/values", false);
   xHttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
