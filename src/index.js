@@ -13,19 +13,22 @@ import {
   getUsers,
   getMaxId,
   FindAndReplace,
-  FindAndRemove,
+  DeleteUser,
+  AddUser,
+  UpdateUser
 } from "./core/coreutil";
 import * as serviceWorker from "./serviceWorker";
 
 let users = [
   { id: 1, name: "Jon", email: "36 / Lead Developer" },
-  { id: 2, name: "Janine Smith", email: "32 / Senior Engineer" },
+  { id: 2, name: "Janine Smith", email: "32 / Senior Engineer" }
 ];
 
 const UserWraper = withRouter(props => (
   <AddUserForm
     onUserAdd={user => {
-      users.push(user);
+      AddUser(user);
+      users = getUsers();
       props.history.push("/");
     }}
     onCancel={() => {
@@ -38,7 +41,8 @@ const UserWraper = withRouter(props => (
 const EditUserWraper = withRouter(props => (
   <EditUserForm
     onUserEdit={user => {
-      FindAndReplace(users, "id", user);
+      UpdateUser(user);
+      users = getUsers();
       props.history.push("/");
     }}
     onCancel={() => {
@@ -53,7 +57,8 @@ const EditUserWraper = withRouter(props => (
 const DeleteUserWraper = withRouter(props => (
   <DeleteUserForm
     onUserDelete={user => {
-      FindAndRemove(users, "id", user);
+      DeleteUser(user.id);
+      users = getUsers();
       props.history.push("/");
     }}
     onCancel={() => {
@@ -84,7 +89,8 @@ function render() {
               data-target="#navbarToggleExternalContent"
               aria-controls="navbarToggleExternalContent"
               aria-expanded="false"
-              aria-label="Toggle navigation">
+              aria-label="Toggle navigation"
+            >
               <span class="navbar-toggler-icon" />
             </Link>
           </nav>
