@@ -75,48 +75,51 @@ const DeleteUserWraper = withRouter(props => (
 ));
 
 async function render() {
-  users = await getUsers();
-  ReactDOM.render(
-    <BrowserRouter>
-      <React.Fragment>
-        <div class="pos-f-t">
-          <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
-              <h5 class="text-white h4">Collapsed content</h5>
-              <span class="text-muted">Toggleable via the navbar brand.</span>
-            </div>
-          </div>
-          <nav class="navbar navbar-dark bg-dark">
-            <Link
-              to="/"
-              class="navbar-toggler"
-              data-toggle="collapse"
-              data-target="#navbarToggleExternalContent"
-              aria-controls="navbarToggleExternalContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon" />
-            </Link>
-          </nav>
-        </div>
+  getUsers().then(function(value) {
+    users = value;
 
+    ReactDOM.render(
+      <BrowserRouter>
         <React.Fragment>
-          <Route exact path="/" render={() => <App users={users} />} />
-          <Route exact path="/add" component={UserWraper} />
-          <Route path="/edit/:id/:name/:email" component={EditUserWraper} />
-          <Route path="/delete/:id/:name" component={DeleteUserWraper} />
-        </React.Fragment>
-        <br />
-        <footer className="footer">
-          <div className="container text-right">
-            <span className="text-muted">Bhavin Africawala © 2019</span>
+          <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+              <div class="bg-dark p-4">
+                <h5 class="text-white h4">Collapsed content</h5>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+              </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+              <Link
+                to="/"
+                class="navbar-toggler"
+                data-toggle="collapse"
+                data-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon" />
+              </Link>
+            </nav>
           </div>
-        </footer>
-      </React.Fragment>{" "}
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
+
+          <React.Fragment>
+            <Route exact path="/" render={() => <App users={users} />} />
+            <Route exact path="/add" component={UserWraper} />
+            <Route path="/edit/:id/:name/:email" component={EditUserWraper} />
+            <Route path="/delete/:id/:name" component={DeleteUserWraper} />
+          </React.Fragment>
+          <br />
+          <footer className="footer">
+            <div className="container text-right">
+              <span className="text-muted">Bhavin Africawala © 2019</span>
+            </div>
+          </footer>
+        </React.Fragment>{" "}
+      </BrowserRouter>,
+      document.getElementById("root")
+    );
+  });
 }
 
 render();
