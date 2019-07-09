@@ -1,70 +1,28 @@
-export function getUsers() {
-  var users;
-  var xHttp = new XMLHttpRequest();
-  xHttp.open("GET", "https://ba-todolistapi.herokuapp.com/api/values", false);
-  xHttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+import axios from "axios";
+import { async } from "q";
 
-  xHttp.onreadystatechange = function() {
-    users = JSON.parse(xHttp.responseText);
-  };
-  xHttp.send();
+export async function getUsers() {
+  debugger;
+  var response = await axios.get(
+    "https://ba-todolistapi.herokuapp.com/api/values"
+  );
+  var users = response.data;
   return users;
 }
 
-export function DeleteUser(id) {
-  var xHttp = new XMLHttpRequest();
-
-  xHttp.open(
-    "DELETE",
-    "https://ba-todolistapi.herokuapp.com/api/values/" + id,
-    false
-  );
-  xHttp.onreadystatechange = function() {
-    console.log("success");
-  };
-  xHttp.send();
+export async function DeleteUser(id) {
+  await axios.delete("https://ba-todolistapi.herokuapp.com/api/values/" + id);
 }
 
-export function AddUser(user) {
-  var xHttp = new XMLHttpRequest();
-
-  xHttp.open("POST", "https://ba-todolistapi.herokuapp.com/api/values", false);
-  xHttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
-  xHttp.onreadystatechange = function() {
-    console.log("success");
-  };
-  xHttp.send(JSON.stringify(user));
+export async function AddUser(user) {
+  await axios.post("https://ba-todolistapi.herokuapp.com/api/values", user);
 }
 
-export function UpdateUser(user) {
-  var xHttp = new XMLHttpRequest();
-
-  xHttp.open("PUT", "https://ba-todolistapi.herokuapp.com/api/values", false);
-  xHttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
-  xHttp.onreadystatechange = function() {
-    console.log("success");
-  };
-  xHttp.send(JSON.stringify(user));
+export async function EditUser(user) {
+  await axios.put("https://ba-todolistapi.herokuapp.com/api/values", user);
 }
 
 export function getMaxId(users) {
   if (users.length <= 0) return 1;
   return users.reduce((max, p) => (p.id > max ? p.id : max), users[0].id) + 1;
-}
-
-export function FindAndReplace(array, property, newuser) {
-  console.log(newuser);
-  array.forEach(function(result, index) {
-    if (parseInt(result[property]) === parseInt(newuser.id)) {
-      array.splice(index, 1, newuser);
-    }
-  });
-}
-
-export function FindAndRemove(array, property, deleteuser) {
-  array.forEach(function(result, index) {
-    if (parseInt(result[property]) === parseInt(deleteuser.id)) {
-      array.splice(index, 1);
-    }
-  });
 }

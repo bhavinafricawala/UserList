@@ -14,21 +14,21 @@ import {
   getMaxId,
   DeleteUser,
   AddUser,
-  UpdateUser
+  EditUser
 } from "./core/coreutil";
 import * as serviceWorker from "./serviceWorker";
 
-let users = [
-  { id: 1, name: "Jon", email: "36 / Lead Developer" },
-  { id: 2, name: "Janine Smith", email: "32 / Senior Engineer" }
-];
+let users = [{ id: 1, name: "Jon", email: "36 / Lead Developer" }];
 
 const UserWraper = withRouter(props => (
   <AddUserForm
     onUserAdd={user => {
-      AddUser(user);
-      users = getUsers();
-      props.history.push("/");
+      AddUser(user).then(function() {
+        getUsers().then(function(value) {
+          users = value;
+          props.history.push("/");
+        });
+      });
     }}
     onCancel={() => {
       props.history.push("/");
@@ -40,9 +40,12 @@ const UserWraper = withRouter(props => (
 const EditUserWraper = withRouter(props => (
   <EditUserForm
     onUserEdit={user => {
-      UpdateUser(user);
-      users = getUsers();
-      props.history.push("/");
+      EditUser(user).then(function() {
+        getUsers().then(function(value) {
+          users = value;
+          props.history.push("/");
+        });
+      });
     }}
     onCancel={() => {
       props.history.push("/");
@@ -56,9 +59,12 @@ const EditUserWraper = withRouter(props => (
 const DeleteUserWraper = withRouter(props => (
   <DeleteUserForm
     onUserDelete={user => {
-      DeleteUser(user.id);
-      users = getUsers();
-      props.history.push("/");
+      DeleteUser(user.id).then(function() {
+        getUsers().then(function(value) {
+          users = value;
+          props.history.push("/");
+        });
+      });
     }}
     onCancel={() => {
       props.history.push("/");
@@ -68,8 +74,8 @@ const DeleteUserWraper = withRouter(props => (
   />
 ));
 
-function render() {
-  users = getUsers();
+async function render() {
+  users = await getUsers();
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>
