@@ -18,7 +18,9 @@ import {
 } from "./core/coreutil";
 import * as serviceWorker from "./serviceWorker";
 
-let users = [{ id: 1, name: "Jon", email: "36 / Lead Developer" }];
+let users = [
+  { id: 1, name: "Jon", email: "36 / Lead Developer", password: "" }
+];
 
 const UserWraper = withRouter(props => (
   <AddUserForm

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function UserEditForm(props) {
   const handleSubmit = event => {
     event.preventDefault();
-    const user = { id: id, name: name, email: email };
+    const user = { id: id, name: name, email: email, password: password };
     props.onUserEdit(user);
   };
 
@@ -14,6 +14,7 @@ function UserEditForm(props) {
   const [id, setId] = useState(props.id);
   const [name, setName] = useState(props.name);
   const [email, setEmail] = useState(props.email);
+  const [password, setPassword] = useState(props.password);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -49,13 +50,24 @@ function UserEditForm(props) {
             onChange={e => setEmail(e.target.value)}
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>{" "}
         <button
           type="button"
           className="btn btn-secondary"
-          onClick={onEditCancel}>
+          onClick={onEditCancel}
+        >
           Cancel
         </button>
       </div>
